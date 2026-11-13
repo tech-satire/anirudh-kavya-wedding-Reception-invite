@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Anirudh &amp; Kavya — Grand Wedding Reception | 21.11.2026</title>
+  <meta name="description" content="Together with their families, Anirudh Ravichander &amp; Kavya Maran cordially invite you to their Grand Wedding Reception at Taj Coromandel, Chennai." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#FAF7F2',
+            alabaster: '#F3ECE1',
+            powder: '#B8CCE0',
+            powderLight: '#DCE7F3',
+            powderDeep: '#6B89A8',
+            champagne: '#E8D5C8',
+            royalGold: '#B5945B',
+            royalGoldDark: '#8E6F38',
+            royalGoldLight: '#DFC592',
+            charcoal: '#2C353D',
+            slateMuted: '#5C6773'
+          },
+          fontFamily: {
+            display: ['Cinzel', 'serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --ivory: #FAF7F2;
+      --alabaster: #F3ECE1;
+      --powder: #B8CCE0;
+      --champagne: #E8D5C8;
+      --gold: #B5945B;
+      --gold-dark: #8E6F38;
+      --charcoal: #2C353D;
+    }
+
+    * {
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(180deg, #E8F0F8 0%, #F7F3EC 35%, #F2EAE0 70%, #E7EFF7 100%);
+      color: var(--charcoal);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Sunlit Aegean & Alabaster Paper Texture */
+    .paper-texture {
+      background-color: var(--ivory);
+      background-image:
+        radial-gradient(at 15% 8%, rgba(184, 204, 224, 0.34) 0px, transparent 52%),
+        radial-gradient(at 88% 22%, rgba(232, 213, 200, 0.36) 0px, transparent 50%),
+        radial-gradient(at 50% 62%, rgba(215, 228, 240, 0.25) 0px, transparent 55%),
+        radial-gradient(at 18% 92%, rgba(181, 148, 91, 0.14) 0px, transparent 48%);
+    }
+
+    /* Gold Foil Text */
+    .gold-foil {
+      background: linear-gradient(135deg, #8E6F38 0%, #C6A467 35%, #9B7B42 65%, #DFC592 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Envelope Overlay & 3D Flaps */
+    #envelope-overlay {
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.9s ease;
+    }
+    #envelope-overlay.opened {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-flap-top {
+      transform-origin: top center;
+      transition: transform 1.05s cubic-bezier(0.4, 0, 0.2, 1);
+      backface-visibility: hidden;
+    }
+    .envelope-flap-bottom {
+      transform-origin: bottom center;
+      transition: transform 1.05s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #envelope-overlay.opening .envelope-flap-top {
+      transform: rotateX(180deg);
+    }
+    #envelope-overlay.opening .envelope-flap-bottom {
+      transform: translateY(35%) scaleY(0.85);
+      opacity: 0.4;
+    }
+    #envelope-overlay.opening #wax-seal-btn {
+      transform: scale(1.25);
+      opacity: 0;
+      transition: all 0.45s ease;
+    }
+
+    /* Wax Seal Pulse */
+    @keyframes sealPulse {
+      0%, 100% {
+        box-shadow: 0 12px 32px rgba(142, 111, 56, 0.35), 0 0 0 0 rgba(181, 148, 91, 0.45);
+      }
+      50% {
+        box-shadow: 0 16px 38px rgba(142, 111, 56, 0.48), 0 0 0 14px rgba(181, 148, 91, 0);
+      }
+    }
+    .wax-seal {
+      background: radial-gradient(circle at 32% 28%, #E7CE9D 0%, #B99659 48%, #85652F 88%, #6D5122 100%);
+      animation: sealPulse 2.6s infinite ease-in-out;
+    }
+
+    /* Scroll Cue Bounce */
+    @keyframes scrollFloat {
+      0%, 100% { transform: translateY(0); opacity: 0.85; }
+      50% { transform: translateY(7px); opacity: 1; }
+    }
+    .scroll-cue {
+      animation: scrollFloat 1.9s infinite ease-in-out;
+    }
+
+    /* Reveal on Scroll */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Royal Arch Frame */
+    .royal-arch {
+      border-radius: 9999px 9999px 24px 24px;
+      border: 1.5px solid rgba(181, 148, 91, 0.48);
+      box-shadow: 0 18px 45px rgba(107, 137, 168, 0.14), inset 0 0 0 6px rgba(250, 247, 242, 0.72);
+    }
+
+    /* Gallery Card Hover/Tap */
+    .photo-card img {
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .photo-card:active img,
+    .photo-card:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Scratch Card Canvas */
+    #scratch-canvas {
+      touch-action: none;
+      cursor: grab;
+    }
+    #scratch-canvas:active {
+      cursor: grabbing;
+    }
+
+    /* Gentle Aegean Wave Motion */
+    @keyframes waveDrift {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-10px); }
+    }
+    .aegean-wave {
+      animation: waveDrift 6s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-powder selection:text-charcoal">
+
+  <!-- Background Audio Loop (assets/bgm.mp3) -->
+  <audio id="bgm-audio" loop preload="auto">
+    <source src="assets/bgm.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Desktop Flanking Aegean Art Backdrop -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+    <svg class="w-full h-full opacity-55" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="skyWash" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#D4E4F4" stop-opacity="0.75" />
+          <stop offset="55%" stop-color="#FAF7F2" stop-opacity="0.9" />
+          <stop offset="100%" stop-color="#E7D8C9" stop-opacity="0.65" />
+        </linearGradient>
+        <linearGradient id="seaWash" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#A7C3DF" stop-opacity="0.38" />
+          <stop offset="50%" stop-color="#C6DCF0" stop-opacity="0.52" />
+          <stop offset="100%" stop-color="#9DBBD9" stop-opacity="0.38" />
+        </linearGradient>
+      </defs>
+      <rect width="1440" height="900" fill="url(#skyWash)" />
+      <circle cx="720" cy="240" r="340" fill="#FFFDF9" opacity="0.65" />
+      <g stroke="#B5945B" stroke-width="1" fill="none" opacity="0.35">
+        <rect x="75" y="140" width="28" height="620" rx="3" />
+        <line x1="84" y1="140" x2="84" y2="760" />
+        <line x1="94" y1="140" x2="94" y2="760" />
+        <path d="M63 140 L115 140 L108 122 L70 122 Z" />
+        <path d="M63 760 L115 760 L119 778 L59 778 Z" />
+
+        <rect x="1337" y="140" width="28" height="620" rx="3" />
+        <line x1="1346" y1="140" x2="1346" y2="760" />
+        <line x1="1356" y1="140" x2="1356" y2="760" />
+        <path d="M1325 140 L1377 140 L1370 122 L1332 122 Z" />
+        <path d="M1325 760 L1377 760 L1381 778 L1321 778 Z" />
+      </g>
+      <path d="M0 640 Q360 622 720 640 T1440 640 L1440 900 L0 900 Z" fill="url(#seaWash)" />
+      <path d="M0 680 Q360 665 720 680 T1440 680" stroke="#7A9BB8" stroke-width="1" fill="none" opacity="0.35" />
+      <path d="M0 725 Q360 710 720 725 T1440 725" stroke="#7A9BB8" stroke-width="1" fill="none" opacity="0.28" />
+    </svg>
+  </div>
+
+  <!-- Continuous Royal Flower Petal Shower Canvas -->
+  <canvas id="petal-canvas" class="fixed inset-0 pointer-events-none z-40"></canvas>
+
+  <!-- Floating Music Control Pill -->
+  <button
+    id="music-toggle-btn"
+    type="button"
+    aria-label="Toggle background music"
+    class="hidden fixed top-4 right-4 z-50 items-center gap-2 px-3.5 py-2 rounded-full bg-ivory/95 backdrop-blur-md border border-royalGold/50 shadow-lg text-charcoal text-xs font-medium transition-transform active:scale-95"
+  >
+    <span id="music-bars" class="flex items-end gap-0.5 h-3.5">
+      <span class="w-0.5 h-2 bg-royalGold animate-pulse"></span>
+      <span class="w-0.5 h-3.5 bg-royalGold animate-bounce"></span>
+      <span class="w-0.5 h-2.5 bg-royalGold animate-pulse"></span>
+    </span>
+    <span id="music-label" class="tracking-wide text-[11px] uppercase text-royalGoldDark font-semibold">Music On</span>
+  </button>
+
+  <!-- =========================================================
+       STEP 1: GRAND FULL-SCREEN ROYAL ENVELOPE CURTAIN
+  ========================================================== -->
+  <div
+    id="envelope-overlay"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-b from-[#DCE8F4] via-[#FAF7F2] to-[#EFE6D8] overflow-hidden"
+  >
+    <div class="relative w-full max-w-[480px] h-full flex flex-col justify-between overflow-hidden shadow-2xl border-x border-royalGold/35 paper-texture">
+      <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30" viewBox="0 0 400 800" preserveAspectRatio="none">
+        <path d="M40 760 L40 220 A160 160 0 0 1 360 220 L360 760" fill="none" stroke="#B5945B" stroke-width="1" />
+        <path d="M52 760 L52 225 A148 148 0 0 1 348 225 L348 760" fill="none" stroke="#85A3C2" stroke-width="0.8" stroke-dasharray="4 4" />
+      </svg>
+
+      <!-- Top Royal Envelope Flap -->
+      <div class="envelope-flap-top relative w-full h-[54%] z-10 drop-shadow-xl">
+        <svg viewBox="0 0 400 420" preserveAspectRatio="none" class="w-full h-full">
+          <defs>
+            <linearGradient id="topFlapGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#D2E2F2" />
+              <stop offset="50%" stop-color="#B8CCE0" />
+              <stop offset="100%" stop-color="#A4BDD6" />
+            </linearGradient>
+          </defs>
+          <polygon points="0,0 400,0 200,395" fill="url(#topFlapGrad)" />
+          <polyline points="4,0 200,388 396,0" fill="none" stroke="#B5945B" stroke-width="2" />
+          <polyline points="18,0 200,362 382,0" fill="none" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.7" />
+        </svg>
+
+        <div class="absolute top-9 inset-x-0 text-center px-6">
+          <p class="font-display text-[10px] tracking-[0.34em] uppercase text-charcoal/80">Royal Reception Invitation</p>
+          <p class="font-serif italic text-lg text-royalGoldDark mt-1">Anirudh &amp; Kavya</p>
+        </div>
+      </div>
+
+      <!-- Center Embossed Gold Wax Seal -->
+      <div class="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none px-6">
+        <button
+          id="wax-seal-btn"
+          type="button"
+          aria-label="Open Royal Wedding Invitation"
+          class="wax-seal pointer-events-auto relative w-28 h-28 rounded-full flex flex-col items-center justify-center border-2 border-[#F5E4C3]/85 text-ivory cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-95"
+        >
+          <div class="absolute inset-2 rounded-full border border-ivory/50"></div>
+          <span class="font-display text-xl font-semibold tracking-wider drop-shadow">A &amp; K</span>
+          <span class="text-[9px] font-display tracking-[0.25em] uppercase text-[#FFF6E5] mt-0.5">11 • 11</span>
+        </button>
+
+        <div class="mt-6 text-center bg-ivory/85 backdrop-blur-sm px-5 py-2.5 rounded-full border border-royalGold/35 shadow-sm">
+          <p class="font-display text-[11px] tracking-[0.26em] uppercase text-royalGoldDark font-semibold">Tap Seal to Open</p>
+          <p class="font-serif italic text-sm text-slateMuted mt-0.5">With Blessings &amp; Royal Melodies</p>
+        </div>
+      </div>
+
+      <!-- Bottom Envelope Pocket -->
+      <div class="envelope-flap-bottom relative w-full h-[54%] z-20 -mt-[14%]">
+        <svg viewBox="0 0 400 420" preserveAspectRatio="none" class="w-full h-full">
+          <defs>
+            <linearGradient id="bottomPocketGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F6EFE5" />
+              <stop offset="100%" stop-color="#E7D8C5" />
+            </linearGradient>
+          </defs>
+          <polygon points="0,420 0,85 200,245 400,85 400,420" fill="url(#bottomPocketGrad)" />
+          <polyline points="0,85 200,245 400,85" fill="none" stroke="#B5945B" stroke-width="1.8" />
+        </svg>
+
+        <div class="absolute bottom-8 inset-x-0 text-center px-6">
+          <p class="font-display text-[10px] tracking-[0.28em] uppercase text-royalGoldDark">Chennai • Tamil Nadu</p>
+          <p class="font-serif text-base text-charcoal/80 mt-0.5">November 21, 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MAIN MOBILE-FIRST INVITATION CONTAINER
+  ========================================================== -->
+  <main class="relative z-10 mx-auto w-full max-w-[480px] min-h-screen paper-texture shadow-[0_0_60px_rgba(107,137,168,0.18)] border-x border-royalGold/30 overflow-hidden">
+
+    <!-- =========================================================
+         STEP 2: FULL-SCREEN MOBILE VIDEO 1 (assets/intro-video.mp4)
+    ========================================================== -->
+    <section id="intro-video-section" class="relative w-full h-[100dvh] min-h-[640px] bg-gradient-to-b from-[#DCE8F4] via-[#FAF7F2] to-[#EFE5D7] overflow-hidden">
+      <video
+        id="intro-video"
+        class="w-full h-full object-cover"
+        playsinline
+        muted
+        loop
+        preload="metadata"
+      >
+        <source src="assets/intro-video.mp4" type="video/mp4" />
+      </video>
+
+      <!-- Luminous Aegean Animated Fallback Canvas (Auto-displays if intro-video.mp4 is missing) -->
+      <canvas id="intro-fallback-canvas" class="hidden absolute inset-0 w-full h-full"></canvas>
+
+      <!-- Top Subtle Badge -->
+      <div class="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-ivory/90 backdrop-blur-md border border-royalGold/45 shadow-sm">
+        <span class="font-display text-[10px] tracking-[0.26em] uppercase text-royalGoldDark font-semibold">The Royal Prelude</span>
+      </div>
+
+      <!-- Bottom Gradient & Scroll-Down Gesture Cue -->
+      <div class="absolute inset-x-0 bottom-0 z-20 pt-16 pb-7 px-6 bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/85 to-transparent flex flex-col items-center text-center">
+        <button
+          id="intro-play-btn"
+          type="button"
+          class="mb-4 px-4 py-1.5 rounded-full bg-ivory/95 border border-royalGold/50 text-royalGoldDark font-display text-[10px] tracking-[0.22em] uppercase shadow-sm active:scale-95"
+        >
+          Pause Film
+        </button>
+
+        <a href="#couple-reveal" class="scroll-cue inline-flex flex-col items-center gap-1.5 text-royalGoldDark group">
+          <span class="font-display text-[10px] tracking-[0.3em] uppercase font-semibold">Scroll Down to Enter</span>
+          <span class="w-8 h-8 rounded-full border border-royalGold/60 bg-ivory/90 flex items-center justify-center shadow-sm">
+            <svg class="w-4 h-4 text-royalGoldDark" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 3: BRIDE & GROOM REVEAL + FOUR SEASONS AEGEAN ART
+    ========================================================== -->
+    <section id="couple-reveal" class="relative px-6 pt-12 pb-12 text-center reveal-up">
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <span class="h-px w-12 bg-gradient-to-r from-transparent to-royalGold"></span>
+        <svg class="w-5 h-5 text-royalGold" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C13.5 6 16 8.5 20 10C16 11.5 13.5 14 12 18C10.5 14 8 11.5 4 10C8 8.5 10.5 6 12 2Z" />
+        </svg>
+        <span class="h-px w-12 bg-gradient-to-l from-transparent to-royalGold"></span>
+      </div>
+
+      <p class="font-display text-[11px] tracking-[0.32em] uppercase text-royalGoldDark mb-3">
+        A Celebration of Eternal Harmony
+      </p>
+
+      <!-- Royal Arch Frame -->
+      <div class="royal-arch relative mx-auto max-w-[360px] px-5 pt-10 pb-8 bg-gradient-to-b from-powderLight/55 via-ivory to-champagne/40">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ivory border border-royalGold/40 mb-5 shadow-xs">
+          <span class="w-1.5 h-1.5 rounded-full bg-royalGold"></span>
+          <span class="font-display text-[10px] tracking-[0.26em] uppercase text-charcoal/80">11 • 11 • 2026</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-royalGold"></span>
+        </div>
+
+        <h1 class="font-serif text-5xl sm:text-[54px] font-semibold leading-none gold-foil tracking-tight">
+          Anirudh
+        </h1>
+        <p class="font-display text-[11px] tracking-[0.24em] uppercase text-slateMuted mt-1.5">
+          Ravichander
+        </p>
+
+        <div class="my-4 flex items-center justify-center gap-3">
+          <span class="h-px w-10 bg-royalGold/50"></span>
+          <span class="font-serif italic text-3xl text-royalGoldDark">&amp;</span>
+          <span class="h-px w-10 bg-royalGold/50"></span>
+        </div>
+
+        <h1 class="font-serif text-5xl sm:text-[54px] font-semibold leading-none gold-foil tracking-tight">
+          Kavya
+        </h1>
+        <p class="font-display text-[11px] tracking-[0.24em] uppercase text-slateMuted mt-1.5">
+          Maran
+        </p>
+
+        <div class="mt-7 pt-5 border-t border-royalGold/30">
+          <p class="font-serif italic text-xl text-charcoal leading-relaxed">
+            “My once in a lifetime, for a lifetime. 11.11.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Scenic Vector Artwork: Four Seasons Astir Palace, Vouliagmeni Peninsula, Athens -->
+      <div class="mt-9 rounded-2xl overflow-hidden border border-royalGold/40 bg-gradient-to-b from-[#D7E6F5] via-[#F6F1E9] to-[#E6D6C3] shadow-sm">
+        <svg viewBox="0 0 420 215" class="w-full h-auto block" role="img" aria-label="Open-air floral mandap overlooking the Aegean Sea at Four Seasons Astir Palace, Vouliagmeni Peninsula, Athens">
+          <defs>
+            <linearGradient id="athensSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C9DDF1" />
+              <stop offset="65%" stop-color="#FAF6EE" />
+              <stop offset="100%" stop-color="#F2E6D6" />
+            </linearGradient>
+            <linearGradient id="aegeanSea" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#8EB3D6" />
+              <stop offset="50%" stop-color="#B5D1EA" />
+              <stop offset="100%" stop-color="#83A9CE" />
+            </linearGradient>
+          </defs>
+
+          <!-- Aegean Sky & Golden Sun -->
+          <rect width="420" height="215" fill="url(#athensSky)" />
+          <circle cx="315" cy="54" r="24" fill="#FFFDF7" opacity="0.85" />
+          <circle cx="315" cy="54" r="34" fill="#DFC592" opacity="0.22" />
+
+          <!-- Vouliagmeni Peninsula Headlands -->
+          <path d="M0 112 Q65 92 135 108 Q185 118 235 112 L235 130 L0 130 Z" fill="#C7D4C3" opacity="0.7" />
+          <path d="M250 116 Q335 96 420 110 L420 130 L250 130 Z" fill="#B8C8B4" opacity="0.65" />
+
+          <!-- Shimmering Aegean Sea -->
+          <rect x="0" y="122" width="420" height="58" fill="url(#aegeanSea)" />
+          <g class="aegean-wave" stroke="#FAF7F2" stroke-width="1" fill="none" opacity="0.65">
+            <path d="M18 134 Q48 130 78 134 T138 134" />
+            <path d="M245 138 Q280 134 315 138 T385 138" />
+            <path d="M65 152 Q105 148 145 152 T225 152" />
+            <path d="M270 158 Q305 154 340 158 T405 158" />
+          </g>
+
+          <!-- Coastal Marble Terrace -->
+          <rect x="0" y="172" width="420" height="43" fill="#F5EFE6" />
+          <line x1="0" y1="172" x2="420" y2="172" stroke="#B5945B" stroke-width="1.2" />
+          <g stroke="#B5945B" stroke-width="0.7" opacity="0.55">
+            <line x1="25" y1="172" x2="25" y2="188" />
+            <line x1="65" y1="172" x2="65" y2="188" />
+            <line x1="105" y1="172" x2="105" y2="188" />
+            <line x1="315" y1="172" x2="315" y2="188" />
+            <line x1="355" y1="172" x2="355" y2="188" />
+            <line x1="395" y1="172" x2="395" y2="188" />
+            <line x1="0" y1="188" x2="420" y2="188" />
+          </g>
+
+          <!-- Open-Air Floral Mandap Overlooking the Aegean -->
+          <g transform="translate(132, 46)">
+            <rect x="8" y="122" width="140" height="6" rx="2" fill="#E6D5BE" stroke="#B5945B" stroke-width="0.9" />
+            <rect x="18" y="34" width="6" height="88" fill="#FAF7F2" stroke="#B5945B" stroke-width="0.9" />
+            <rect x="34" y="34" width="5" height="88" fill="#FAF7F2" stroke="#B5945B" stroke-width="0.9" />
+            <rect x="117" y="34" width="5" height="88" fill="#FAF7F2" stroke="#B5945B" stroke-width="0.9" />
+            <rect x="132" y="34" width="6" height="88" fill="#FAF7F2" stroke="#B5945B" stroke-width="0.9" />
+            <path d="M10 34 Q78 8 146 34 Z" fill="#FAF7F2" stroke="#B5945B" stroke-width="1.1" />
+            <path d="M24 34 Q78 52 132 34" fill="none" stroke="#E8D5C8" stroke-width="4" />
+            <path d="M24 34 Q78 52 132 34" fill="none" stroke="#B5945B" stroke-width="0.9" stroke-dasharray="2 2" />
+            <circle cx="21" cy="36" r="5" fill="#E8D5C8" stroke="#B5945B" stroke-width="0.7" />
+            <circle cx="78" cy="43" r="5" fill="#DCE7F3" stroke="#B5945B" stroke-width="0.7" />
+            <circle cx="135" cy="36" r="5" fill="#E8D5C8" stroke="#B5945B" stroke-width="0.7" />
+            <rect x="70" y="111" width="16" height="11" fill="#DFC592" stroke="#8E6F38" stroke-width="0.8" />
+            <path d="M78 103 Q82 107 78 111 Q74 107 78 103 Z" fill="#D98A3C" />
+          </g>
+        </svg>
+        <div class="px-4 py-3 bg-ivory/95 border-t border-royalGold/25">
+          <p class="font-display text-[10px] tracking-[0.24em] uppercase text-royalGoldDark font-semibold">
+            Vows Exchanged • November 11, 2026
+          </p>
+          <p class="font-serif italic text-base text-charcoal mt-0.5">
+            Four Seasons Astir Palace Hotel, Vouliagmeni Peninsula, Athens, Greece
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 4: GRAND RECEPTION WELCOME & CHENNAI VENUE (TAJ HOTEL)
+    ========================================================== -->
+    <section class="px-6 py-10 reveal-up">
+      <div class="rounded-3xl bg-gradient-to-b from-powderLight/55 via-ivory to-alabaster/90 border border-royalGold/40 p-7 text-center shadow-[0_12px_36px_rgba(107,137,168,0.1)]">
+        <p class="font-display text-[10px] tracking-[0.3em] uppercase text-royalGoldDark font-semibold">
+          The Royal Reception
+        </p>
+
+        <h2 class="font-serif text-3xl font-semibold text-charcoal mt-2 leading-snug">
+          Welcoming You to Our Grand Reception
+        </h2>
+
+        <p class="font-serif text-lg text-slateMuted mt-3 leading-relaxed">
+          Following our intimate wedding vows overlooking the Aegean Sea in Athens, we joyfully invite you to grace our Grand Wedding Reception with your presence and blessings.
+        </p>
+
+        <div class="my-6 flex items-center justify-center gap-2">
+          <span class="h-px w-14 bg-royalGold/40"></span>
+          <span class="w-2 h-2 rotate-45 border border-royalGold"></span>
+          <span class="h-px w-14 bg-royalGold/40"></span>
+        </div>
+
+        <div class="bg-ivory/95 rounded-2xl p-5 border border-royalGold/35 shadow-xs">
+          <p class="font-display text-[10px] tracking-[0.26em] uppercase text-powderDeep font-semibold">
+            Reception Venue
+          </p>
+          <h3 class="font-serif text-2xl font-semibold text-charcoal mt-1">
+            Taj Coromandel, Chennai
+          </h3>
+          <p class="text-xs text-slateMuted mt-1 leading-relaxed">
+            37, Mahatma Gandhi Road, Nungambakkam, Chennai, Tamil Nadu
+          </p>
+
+          <div class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-champagne/55 border border-royalGold/35 text-xs text-charcoal font-medium">
+            <span>Dress Code: Royal Pastels &amp; Traditional Couture</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 5: PRE-WEDDING SHOOT GALLERY (2 PHOTOS)
+    ========================================================== -->
+    <section class="px-6 py-10 reveal-up">
+      <div class="text-center mb-7">
+        <p class="font-display text-[10px] tracking-[0.3em] uppercase text-royalGoldDark">Chapter I</p>
+        <h2 class="font-serif text-3xl font-semibold text-charcoal mt-1">Pre-Wedding Portraits</h2>
+        <p class="font-serif italic text-base text-slateMuted mt-1">Quiet moments before forever began</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3.5">
+        <button
+          type="button"
+          onclick="openLightbox('assets/prewedding-1.jpg', 'Pre-Wedding Portrait I — Golden Hour by the Aegean')"
+          class="photo-card group relative aspect-[3/4] rounded-2xl overflow-hidden border border-royalGold/40 bg-powderLight/50 shadow-md text-left"
+        >
+          <img
+            src="assets/prewedding-1.jpg"
+            alt="Anirudh and Kavya Pre-Wedding Portrait 1"
+            class="w-full h-full object-cover"
+            onerror="handleImgFallback(this, 'Pre-Wedding I', 'assets/prewedding-1.jpg')"
+          />
+          <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-ivory/95 via-ivory/70 to-transparent">
+            <p class="font-display text-[9px] tracking-[0.22em] uppercase text-royalGoldDark font-semibold">Portrait I</p>
+            <p class="font-serif italic text-xs text-charcoal">Golden Hour</p>
+          </div>
+        </button>
+
+        <button
+          type="button"
+          onclick="openLightbox('assets/prewedding-2.jpg', 'Pre-Wedding Portrait II — Serenade in Ivory')"
+          class="photo-card group relative aspect-[3/4] mt-6 rounded-2xl overflow-hidden border border-royalGold/40 bg-champagne/45 shadow-md text-left"
+        >
+          <img
+            src="assets/prewedding-2.jpg"
+            alt="Anirudh and Kavya Pre-Wedding Portrait 2"
+            class="w-full h-full object-cover"
+            onerror="handleImgFallback(this, 'Pre-Wedding II', 'assets/prewedding-2.jpg')"
+          />
+          <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-ivory/95 via-ivory/70 to-transparent">
+            <p class="font-display text-[9px] tracking-[0.22em] uppercase text-royalGoldDark font-semibold">Portrait II</p>
+            <p class="font-serif italic text-xs text-charcoal">Serenade in Ivory</p>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 6: SECOND MOBILE-SIZED VIDEO SHOWCASE (assets/mid-video.mp4)
+    ========================================================== -->
+    <section class="px-6 py-10 reveal-up">
+      <div class="text-center mb-6">
+        <p class="font-display text-[10px] tracking-[0.3em] uppercase text-royalGoldDark">Chapter II</p>
+        <h2 class="font-serif text-3xl font-semibold text-charcoal mt-1">Our Story in Motion</h2>
+        <p class="font-serif italic text-base text-slateMuted mt-1">From Athens’ shores to Chennai’s royal celebration</p>
+      </div>
+
+      <div class="relative mx-auto w-full aspect-[9/16] rounded-[28px] overflow-hidden border-2 border-royalGold/55 bg-gradient-to-b from-[#DCE8F4] via-[#FAF7F2] to-[#EFE5D7] shadow-[0_18px_45px_rgba(107,137,168,0.18)]">
+        <video
+          id="mid-video"
+          class="w-full h-full object-cover"
+          playsinline
+          loop
+          preload="metadata"
+        >
+          <source src="assets/mid-video.mp4" type="video/mp4" />
+        </video>
+
+        <!-- Luminous Aegean Animated Fallback Canvas (Auto-displays if mid-video.mp4 is missing) -->
+        <canvas id="mid-fallback-canvas" class="hidden absolute inset-0 w-full h-full"></canvas>
+
+        <!-- Custom Video Controls -->
+        <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-ivory/95 via-ivory/75 to-transparent flex items-center justify-between">
+          <button
+            id="mid-video-play-btn"
+            type="button"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ivory border border-royalGold/55 text-royalGoldDark font-display text-[10px] tracking-[0.22em] uppercase font-semibold shadow-sm active:scale-95"
+          >
+            <span id="mid-play-icon">▶</span>
+            <span id="mid-play-text">Play Film</span>
+          </button>
+
+          <button
+            id="mid-video-mute-btn"
+            type="button"
+            class="px-3.5 py-2 rounded-full bg-ivory/95 border border-royalGold/45 text-charcoal font-display text-[10px] tracking-[0.2em] uppercase shadow-sm active:scale-95"
+          >
+            Sound Off
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 7: WEDDING MOMENTS PHOTO GALLERY (6 PHOTOS)
+    ========================================================== -->
+    <section class="px-6 py-10 reveal-up">
+      <div class="text-center mb-7">
+        <p class="font-display text-[10px] tracking-[0.3em] uppercase text-royalGoldDark">Chapter III</p>
+        <h2 class="font-serif text-3xl font-semibold text-charcoal mt-1">Moments from 11.11</h2>
+        <p class="font-serif italic text-base text-slateMuted mt-1">Four Seasons Astir Palace • Athens, Greece</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <!-- Wedding Photo 1 -->
+        <button
+          type="button"
+          onclick="openLightbox('assets/wedding-1.jpg', 'Wedding Moment I — The Aegean Mandap')"
+          class="photo-card col-span-2 relative aspect-[16/10] rounded-2xl overflow-hidden border border-royalGold/40 bg-powderLight/50 shadow-sm text-left"
+        >
+          <img
+            src="assets/wedding-1.jpg"
+            alt="Wedding Moment 1"
+            class="w-full h-full object-cover"
+            onerror="handleImgFallback(this, 'The Aegean Mandap', 'assets/wedding-1.jpg')"
+          />
+          <div class="absolute bottom-2.5 left-3 px-3 py-1 rounded-full bg-ivory/90 backdrop-blur-xs border border-royalGold/35">
+            <span class="font-serif italic text-xs text-charcoal">I. The Aegean Mandap</span>
+          </div>
+        </button>
+
+        <!-- Wedding Photo 2 -->
+        <button
+          type="button"
+          onclick="openLightbox('assets/wedding-2.jpg', 'Wedding Moment II — Sacred Vows')"
+          class="photo-card relative aspect-square rounded-2xl overflow-hidden border border-royalGold/40 bg-champagne/45 shadow-sm text-left"
+        >
+          <img
+            src="assets/wedding-2.jpg"
+            alt="Wedding Moment 2"
+            class="w-full h-full object-cover"
+            onerror="handleImgFallback(this, 'Sacred Vows', 'assets/wedding-2.jpg')"
+          />
+        </button>
+
+        <!-- Wedding Photo 3 -->
+        <button
+          type="button"
+          onclick="openLightbox('assets/wedding-3.jpg', 'Wedding Moment III — Pastel Couture')"
+          class="photo-card relative aspect-square rounded-2xl overflow-hidden border border-royalGold/40 bg-powderLight/50 shadow-sm text-left"
+        >
+          <img
+            src="assets/wedding-3.jpg"
+            alt="Wedding Moment 3"
+            class="w-full h-full object-cover"
+            onerror="handleImgFallback(this, 'Pastel Couture', 'assets/wedding-3.jpg')"
+          />
+        </button>
+
+        <!-- Wedding Photo 4 -->
+        <button
+          type="button"
+          onclick="openLightbox('assets/wedding-4.jpg', 'Wedding Moment IV — Blessings & Smiles')"
+          class="photo-card relative aspect-[4/5] rounded-2xl overflow-hidden border border-royalGold/40 bg-powderLight/50 shadow-sm text-left"
+        >
+          <img
+            src="assets/wedding-4.jpg"
+            alt="Wedding Moment 4"
+            class="w-full h-full object-cover"
+            onerror="handleImgFallback(this, 'Blessings & Smiles', 'assets/wedding-4.jpg')"
+          />
+        </button>
+
+        <!-- Wedding Photo 5 -->
+        <button
+          type="button"
+          onclick="openLightbox('assets/wedding-5.jpg', 'Wedding Moment V — Sunset Over Vouliagmeni')"
+          class="photo-card relative aspect-[4/5] rounded-2xl overflow-hidden border border-royalGold/40 bg-champagne/45 shadow-sm text-left"
+        >
+          <img
+            src="assets/wedding-5.jpg"
+            alt="Wedding Moment 5"
+            class="w-full h-full object-cover"
+            onerror="handleImgFallback(this, 'Sunset Vows', 'assets/wedding-5.jpg')"
+          />
+        </button>
+
+        <!-- Wedding Photo 6 -->
+        <button
+          type="button"
+          onclick="openLightbox('assets/wedding-6.jpg', 'Wedding Moment VI — Forever Begins')"
+          class="photo-card col-span-2 relative aspect-[16/10] rounded-2xl overflow-hidden border border-royalGold/40 bg-alabaster shadow-sm text-left"
+        >
+          <img
+            src="assets/wedding-6.jpg"
+            alt="Wedding Moment 6"
+            class="w-full h-full object-cover"
+            onerror="handleImgFallback(this, 'Forever Begins', 'assets/wedding-6.jpg')"
+          />
+          <div class="absolute bottom-2.5 left-3 px-3 py-1 rounded-full bg-ivory/90 backdrop-blur-xs border border-royalGold/35">
+            <span class="font-serif italic text-xs text-charcoal">VI. Forever Begins • 11.11</span>
+          </div>
+        </button>
+      </div>
+      <p class="text-center text-[11px] text-slateMuted mt-3">Tap any photograph to view full frame</p>
+    </section>
+
+    <!-- =========================================================
+         STEP 8: INTERACTIVE GOLD-FOIL SCRATCH CARD (RECEPTION DATE)
+    ========================================================== -->
+    <section class="px-6 py-10 reveal-up">
+      <div class="rounded-3xl bg-gradient-to-b from-ivory via-powderLight/45 to-champagne/40 border border-royalGold/45 p-6 text-center shadow-[0_14px_38px_rgba(107,137,168,0.12)]">
+        <p class="font-display text-[10px] tracking-[0.3em] uppercase text-royalGoldDark font-semibold">
+          Save The Date
+        </p>
+        <h2 class="font-serif text-3xl font-semibold text-charcoal mt-1">
+          Reveal the Reception Date
+        </h2>
+        <p class="text-xs text-slateMuted mt-1">
+          Rub the royal gold foil below with your finger
+        </p>
+
+        <!-- Scratch Container -->
+        <div id="scratch-box" class="relative mx-auto mt-5 w-full max-w-[340px] h-44 rounded-2xl overflow-hidden border-2 border-royalGold/60 shadow-inner bg-ivory select-none">
+          <div class="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-br from-ivory via-powderLight/45 to-champagne/45">
+            <span class="font-display text-[10px] tracking-[0.28em] uppercase text-powderDeep font-semibold">
+              Grand Reception
+            </span>
+            <p class="font-serif text-3xl font-bold text-charcoal mt-1">
+              Saturday, Nov 21, 2026
+            </p>
+            <p class="font-display text-xs tracking-[0.2em] uppercase text-royalGoldDark mt-1 font-semibold">
+              6:30 PM Onwards
+            </p>
+            <p class="font-serif italic text-sm text-slateMuted mt-1">
+              Taj Coromandel, Chennai
+            </p>
+          </div>
+
+          <canvas id="scratch-canvas" class="absolute inset-0 w-full h-full z-10"></canvas>
+        </div>
+
+        <div id="scratch-status" class="mt-4">
+          <button
+            id="reveal-all-btn"
+            type="button"
+            class="text-[11px] font-display tracking-[0.2em] uppercase text-royalGoldDark underline underline-offset-4"
+          >
+            Tap to Reveal Instantly
+          </button>
+        </div>
+
+        <!-- Add to Calendar Action -->
+        <div id="calendar-cta" class="hidden mt-4">
+          <a
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Anirudh+%26+Kavya+Grand+Wedding+Reception&dates=20261121T130000Z/20261121T173000Z&details=Grand+Wedding+Reception+of+Anirudh+Ravichander+%26+Kavya+Maran.+%22My+once+in+a+lifetime,+for+a+lifetime.+11.11.%22&location=Taj+Coromandel,+37,+Mahatma+Gandhi+Rd,+Nungambakkam,+Chennai,+Tamil+Nadu+600034"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-royalGold text-ivory font-display text-[10px] tracking-[0.24em] uppercase font-semibold shadow-md active:scale-95"
+          >
+            <span>+ Save to Google Calendar</span>
+          </a>
+        </div>
+
+        <!-- Couple Caption -->
+        <div class="mt-6 pt-5 border-t border-royalGold/30">
+          <p class="font-serif italic text-xl text-charcoal">
+            “My once in a lifetime, for a lifetime. 11.11.”
+          </p>
+          <p class="font-display text-[10px] tracking-[0.26em] uppercase text-royalGoldDark mt-1">
+            — Anirudh &amp; Kavya
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 9: INTERACTIVE MAP LOCATION (TAJ HOTEL, CHENNAI)
+    ========================================================== -->
+    <section class="px-6 py-10 reveal-up">
+      <div class="text-center mb-6">
+        <p class="font-display text-[10px] tracking-[0.3em] uppercase text-royalGoldDark">Navigation</p>
+        <h2 class="font-serif text-3xl font-semibold text-charcoal mt-1">Venue Location</h2>
+        <p class="font-serif italic text-base text-slateMuted mt-1">Taj Coromandel • Nungambakkam, Chennai</p>
+      </div>
+
+      <div class="rounded-3xl overflow-hidden border border-royalGold/45 bg-ivory shadow-md">
+        <div class="w-full h-60 bg-powderLight/40">
+          <iframe
+            title="Taj Coromandel Chennai Location Map"
+            src="https://maps.google.com/maps?q=Taj%20Coromandel%20Chennai&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            class="w-full h-full border-0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <div class="p-5 flex flex-col sm:flex-row items-center justify-between gap-4 bg-ivory">
+          <div class="text-center sm:text-left">
+            <h3 class="font-serif text-xl font-semibold text-charcoal">Taj Coromandel</h3>
+            <p class="text-xs text-slateMuted mt-0.5">37, Mahatma Gandhi Rd, Nungambakkam, Chennai</p>
+          </div>
+
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Taj+Coromandel+Chennai"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-charcoal text-ivory font-display text-[10px] tracking-[0.22em] uppercase font-semibold shadow-sm active:scale-95"
+          >
+            <span>Open in Maps</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 10: FAMILY WELCOMING ALL TO RECEPTION + VERVEINVITES CREDIT
+    ========================================================== -->
+    <footer class="px-6 pt-10 pb-16 text-center reveal-up">
+      <div class="rounded-3xl bg-gradient-to-b from-powderLight/50 via-ivory to-champagne/45 border border-royalGold/45 p-7 shadow-sm">
+        <p class="font-display text-[10px] tracking-[0.32em] uppercase text-royalGoldDark font-semibold">
+          With Warmest Regards
+        </p>
+
+        <h2 class="font-serif text-3xl font-semibold text-charcoal mt-2">
+          Cordially Welcoming You
+        </h2>
+
+        <div class="mt-6 space-y-5">
+          <div class="p-4 rounded-2xl bg-ivory/95 border border-royalGold/30">
+            <p class="font-display text-[9px] tracking-[0.24em] uppercase text-powderDeep font-semibold">
+              Parents of the Groom
+            </p>
+            <p class="font-serif text-xl font-semibold text-charcoal mt-1">
+              Shri Ravi Raghavendra &amp; Smt. Lakshmi Ravichander
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-ivory/95 border border-royalGold/30">
+            <p class="font-display text-[9px] tracking-[0.24em] uppercase text-powderDeep font-semibold">
+              Parents of the Bride
+            </p>
+            <p class="font-serif text-xl font-semibold text-charcoal mt-1">
+              Shri Kalanithi
